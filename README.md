@@ -24,8 +24,8 @@ boot_time_plugin: ^0.0.1
 import 'package:boot_time_plugin/boot_time_plugin.dart';
 
 void checkBootTime() async {
-final DateTime bootTime = await BootTimePlugin.getBootTime();
-print("Device booted at: $bootTime");
+    final DateTime bootTime = await BootTimePlugin.getBootTime();
+    print("Device booted at: $bootTime");
 }
 
 
