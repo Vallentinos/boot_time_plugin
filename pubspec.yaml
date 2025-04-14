@@ -1,6 +1,6 @@
 name: boot_time_plugin
 description: "To read boot time of device"
-version: 0.0.1
+version: 0.0.2
 homepage: https://github.com/Vallentinos/boot_time_plugin
 repository: https://github.com/Vallentinos/boot_time_plugin
 

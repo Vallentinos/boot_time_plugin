@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'dart:async';
 
-// import 'package:flutter/services.dart';
+// import 'package:flutter/services.dart'; // doesn't necessary
 import 'package:boot_time_plugin/boot_time_plugin.dart';
 
 void main() => runApp(const MyApp());
