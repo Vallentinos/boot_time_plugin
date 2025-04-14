@@ -1,7 +1,8 @@
 name: boot_time_plugin
-description: "A new Flutter plugin project."
+description: "To read boot time of device"
 version: 0.0.1
-homepage:
+homepage: https://github.com/Vallentinos/boot_time_plugin
+repository: https://github.com/Vallentinos/boot_time_plugin
 
 environment:
   sdk: ^3.7.2
