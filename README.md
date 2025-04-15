@@ -16,17 +16,21 @@ Useful for:
 Add this to your `pubspec.yaml`:
 
 dependencies:
-boot_time_plugin: ^0.0.4
+boot_time_plugin: ^0.0.5
 
 
 
 ## USAGE
 import 'package:boot_time_plugin/boot_time_plugin.dart';
 
+
 // Get boot time as DateTime (recommended)
+
 final DateTime bootTime = await BootTimePlugin.getBootTime();
 
+
 // Get boot time as raw milliseconds (for storage or performance)
+
 final int bootTimeMillis = await BootTimePlugin.getBootTimeMilliseconds();
 
 

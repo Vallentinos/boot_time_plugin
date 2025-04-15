@@ -1,6 +1,6 @@
 name: boot_time_plugin
 description: "This is a simple Flutter plugin that provides the device's last boot time on Android and iOS."
-version: 0.0.4
+version: 0.0.5
 homepage: https://github.com/Vallentinos/boot_time_plugin
 repository: https://github.com/Vallentinos/boot_time_plugin
 

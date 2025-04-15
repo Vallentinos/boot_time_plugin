@@ -37,13 +37,17 @@ class _BootTimeScreenState extends State<BootTimeScreen> {
   Future<Map<String, String>> _loadInfo() async {
     String platformVersion = 'Unknown';
     String bootTimeStr = 'Unavailable';
+    String bootTimeMillisStr = 'Unavailable';
 
     try {
       platformVersion =
           await _plugin.getPlatformVersion() ?? 'Unknown platform version';
 
       final DateTime bootTime = await BootTimePlugin.getBootTime();
+      final int bootTimeMillis = await BootTimePlugin.getBootTimeMilliseconds();
+
       bootTimeStr = bootTime.toString();
+      bootTimeMillisStr = bootTimeMillis.toString();
     } catch (e) {
       platformVersion = 'Error: $e';
     }
@@ -51,6 +55,7 @@ class _BootTimeScreenState extends State<BootTimeScreen> {
     return {
       'platformVersion': platformVersion,
       'bootTime': bootTimeStr,
+      'bootTimeMillis': bootTimeMillisStr,
     };
   }
 
@@ -74,10 +79,13 @@ class _BootTimeScreenState extends State<BootTimeScreen> {
             padding: const EdgeInsets.all(16.0),
             child: Column(
               mainAxisAlignment: MainAxisAlignment.center,
+              crossAxisAlignment: CrossAxisAlignment.start,
               children: [
                 Text('Platform Version: ${data['platformVersion']}'),
                 const SizedBox(height: 16),
-                Text('Boot Time: ${data['bootTime']}'),
+                Text('Boot Time (DateTime): ${data['bootTime']}'),
+                const SizedBox(height: 8),
+                Text('Boot Time (milliseconds): ${data['bootTimeMillis']}'),
               ],
             ),
           );
