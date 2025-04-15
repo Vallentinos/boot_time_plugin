@@ -6,27 +6,30 @@
 A simple Flutter plugin that provides the **device's last boot time** on Android and iOS.
 
 Useful for:
-- Detecting system reboots
-- Tracking uptime
-- Resetting session logs after reboot
-
+- Detect device reboots
+- Track uptime or system session length
+- Reset counters or logs after a reboot
+- Save boot time to persistent storage
 
 ## Installation
 
 Add this to your `pubspec.yaml`:
 
 dependencies:
-boot_time_plugin: ^0.0.1
+boot_time_plugin: ^0.0.4
 
 
 
 ## USAGE
 import 'package:boot_time_plugin/boot_time_plugin.dart';
 
-void checkBootTime() async {
-    final DateTime bootTime = await BootTimePlugin.getBootTime();
-    print("Device booted at: $bootTime");
-}
+// Get boot time as DateTime (recommended)
+final DateTime bootTime = await BootTimePlugin.getBootTime();
+
+// Get boot time as raw milliseconds (for storage or performance)
+final int bootTimeMillis = await BootTimePlugin.getBootTimeMilliseconds();
+
+
 
 
 

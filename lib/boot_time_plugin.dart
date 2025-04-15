@@ -18,6 +18,11 @@ class BootTimePlugin {
     final int bootTimeMillis = await _channel.invokeMethod('getBootTime');
     return DateTime.fromMillisecondsSinceEpoch(bootTimeMillis);
   }
+
+  static Future<int> getBootTimeMilliseconds() async {
+    return await _channel.invokeMethod('getBootTime');
+  }
+
 }
 
 
