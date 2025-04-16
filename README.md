@@ -11,29 +11,26 @@ Useful for:
 - Reset counters or logs after a reboot
 - Save boot time to persistent storage
 
+---
+
 ## Installation
 
 Add this to your `pubspec.yaml`:
-
+```yaml
 dependencies:
-boot_time_plugin: ^0.0.5
-
-
+boot_time_plugin: ^0.0.6
+```
 
 ## USAGE
+
+```dart
 import 'package:boot_time_plugin/boot_time_plugin.dart';
-
-
 // Get boot time as DateTime (recommended)
-
 final DateTime bootTime = await BootTimePlugin.getBootTime();
 
-
 // Get boot time as raw milliseconds (for storage or performance)
-
 final int bootTimeMillis = await BootTimePlugin.getBootTimeMilliseconds();
+```
 
-
-
-
+---
 

@@ -1,10 +1,18 @@
-## 0.0.5
+## 0.0.6
 
 ✨ New method added: `getBootTimeMilliseconds()`
 
 - Returns boot time as `int` (milliseconds since epoch)
 - Useful for storing in SharedPreferences or local DBs
-- Add millisecond example. 
+
+
+README.md updated
+
+---
 
 ### New Method Usage
+
+```dart
 final int bootTimeMillis = await BootTimePlugin.getBootTimeMilliseconds();
+```
+---
