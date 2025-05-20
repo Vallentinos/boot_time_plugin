@@ -23,6 +23,22 @@ class BootTimePlugin {
     return await _channel.invokeMethod('getBootTime');
   }
 
+  /// Short alias for [getBootTimeMilliseconds].
+  static Future<int> getBootTimeMs() async {
+    return await _channel.invokeMethod('getBootTime');
+  }
+
+  /// to get passed time From rebooted (ElapsedRealtime or Runtime)
+  static Future<int> getRunTimeMs() async {
+    return await _channel.invokeMethod('getRunTimeMs');
+  }
+
+  /// to get passed time From rebooted as Duration
+  static Future<Duration> getRunTime() async {
+    final int runTimeMs = await _channel.invokeMethod('getRunTimeMs');
+    return Duration(milliseconds: runTimeMs);
+  }
+
 }
 
 

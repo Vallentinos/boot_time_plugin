@@ -1,7 +1,4 @@
 import 'package:flutter/material.dart';
-import 'dart:async';
-
-// import 'package:flutter/services.dart'; // doesn't necessary
 import 'package:boot_time_plugin/boot_time_plugin.dart';
 
 void main() => runApp(const MyApp());
@@ -25,7 +22,6 @@ class BootTimeScreen extends StatefulWidget {
 }
 
 class _BootTimeScreenState extends State<BootTimeScreen> {
-  final BootTimePlugin _plugin = BootTimePlugin();
   late Future<Map<String, String>> _infoFuture;
 
   @override
@@ -38,16 +34,22 @@ class _BootTimeScreenState extends State<BootTimeScreen> {
     String platformVersion = 'Unknown';
     String bootTimeStr = 'Unavailable';
     String bootTimeMillisStr = 'Unavailable';
+    String runTimeStr = 'Unavailable';
+    String runTimeMillisStr = 'Unavailable';
 
     try {
       platformVersion =
-          await _plugin.getPlatformVersion() ?? 'Unknown platform version';
+          await BootTimePlugin().getPlatformVersion() ?? 'Unknown platform version';
 
       final DateTime bootTime = await BootTimePlugin.getBootTime();
-      final int bootTimeMillis = await BootTimePlugin.getBootTimeMilliseconds();
+      final int bootTimeMillis = await BootTimePlugin.getBootTimeMs();
+      final Duration runTime = await BootTimePlugin.getRunTime();
+      final int runTimeMillis = await BootTimePlugin.getRunTimeMs();
 
       bootTimeStr = bootTime.toString();
       bootTimeMillisStr = bootTimeMillis.toString();
+      runTimeStr = runTime.toString();
+      runTimeMillisStr = runTimeMillis.toString();
     } catch (e) {
       platformVersion = 'Error: $e';
     }
@@ -56,6 +58,8 @@ class _BootTimeScreenState extends State<BootTimeScreen> {
       'platformVersion': platformVersion,
       'bootTime': bootTimeStr,
       'bootTimeMillis': bootTimeMillisStr,
+      'runTime': runTimeStr,
+      'runTimeMillis': runTimeMillisStr,
     };
   }
 
@@ -78,14 +82,32 @@ class _BootTimeScreenState extends State<BootTimeScreen> {
           return Padding(
             padding: const EdgeInsets.all(16.0),
             child: Column(
-              mainAxisAlignment: MainAxisAlignment.center,
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
+                const Text(
+                  '🔧 Device Info',
+                  style: TextStyle(fontSize: 18, fontWeight: FontWeight.bold),
+                ),
+                const SizedBox(height: 12),
                 Text('Platform Version: ${data['platformVersion']}'),
-                const SizedBox(height: 16),
+                const SizedBox(height: 24),
+                const Text(
+                  '⏱ Boot Time',
+                  style: TextStyle(fontSize: 18, fontWeight: FontWeight.bold),
+                ),
+                const SizedBox(height: 12),
                 Text('Boot Time (DateTime): ${data['bootTime']}'),
                 const SizedBox(height: 8),
-                Text('Boot Time (milliseconds): ${data['bootTimeMillis']}'),
+                Text('Boot Time (ms): ${data['bootTimeMillis']}'),
+                const SizedBox(height: 24),
+                const Text(
+                  '⚙️ Runtime (Since Boot)',
+                  style: TextStyle(fontSize: 18, fontWeight: FontWeight.bold),
+                ),
+                const SizedBox(height: 12),
+                Text('Run Time (Duration): ${data['runTime']}'),
+                const SizedBox(height: 8),
+                Text('Run Time (ms): ${data['runTimeMillis']}'),
               ],
             ),
           );

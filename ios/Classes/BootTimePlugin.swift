@@ -9,13 +9,15 @@ public class BootTimePlugin: NSObject, FlutterPlugin {
   }
 
   public func handle(_ call: FlutterMethodCall, result: @escaping FlutterResult) {
+    let uptime = ProcessInfo.processInfo.systemUptime // Time since last boot in seconds
     switch call.method {
     case "getPlatformVersion":
       result("iOS " + UIDevice.current.systemVersion)
     case "getBootTime":
-      let uptime = ProcessInfo.processInfo.systemUptime
       let bootTime = Date().addingTimeInterval(-uptime).timeIntervalSince1970 * 1000
       result(Int64(bootTime))
+    case "getRunTimeMs":
+      result(Int64(uptime * 1000))
     default:
       result(FlutterMethodNotImplemented)
     }

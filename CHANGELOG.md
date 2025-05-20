@@ -1,18 +1,23 @@
-## 0.0.6
+## [1.0.0] - 2025-05-20
 
-✨ New method added: `getBootTimeMilliseconds()`
+🎉 Initial stable release
 
-- Returns boot time as `int` (milliseconds since epoch)
-- Useful for storing in SharedPreferences or local DBs
+### 🚀 Features
+- Provides device **boot time** as both `DateTime` and raw milliseconds.
+- Provides **runtime (uptime)** since last reboot as `Duration` or milliseconds.
+- Cross-platform support for **Android** and **iOS**.
 
+### ✨ Improvements
+- Introduced `getRunTime()` that returns a `Duration`.
+- Introduced `getRunTimeMs()` that returns a `Int`.
+- Renamed `getBootTimeMilliseconds` ➜ `getBootTimeMs` for clarity and consistency.
+- Standardized time units across platforms (milliseconds).
 
-README.md updated
+### ✅ Breaking Changes
+- None — all previous method names retained (if they existed before pre-1.0.0 versions).
 
----
+### 📦 Notes
+- This version marks the **first stable (1.0.0) release**.
+- Compatible with the latest versions of Flutter SDK and platform APIs.
+- Ideal for production apps needing uptime or boot tracking.
 
-### New Method Usage
-
-```dart
-final int bootTimeMillis = await BootTimePlugin.getBootTimeMilliseconds();
-```
----

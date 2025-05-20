@@ -26,6 +26,11 @@ class BootTimePlugin : FlutterPlugin, MethodCallHandler {
         val bootTime = System.currentTimeMillis() - SystemClock.elapsedRealtime()
         result.success(bootTime)
       }
+      // Returns milliseconds since device boot (uptime)
+      "getRunTimeMs" -> {
+        val ert = SystemClock.elapsedRealtime()
+        result.success(ert)
+      }
       else -> result.notImplemented()
     }
   }

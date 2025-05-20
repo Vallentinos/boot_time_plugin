@@ -5,32 +5,68 @@
 
 A simple Flutter plugin that provides the **device's last boot time** on Android and iOS.
 
-Useful for:
+---
+
+## 🔧 Use Cases
+
 - Detect device reboots
-- Track uptime or system session length
-- Reset counters or logs after a reboot
-- Save boot time to persistent storage
+- Measure uptime or session length
+- Reset logs, counters, or timers on reboot
+- Store boot time or runtime for analytics and diagnostics
 
 ---
 
-## Installation
+## 📦 Installation
 
 Add this to your `pubspec.yaml`:
+
 ```yaml
 dependencies:
-boot_time_plugin: ^0.0.6
+  boot_time_plugin: ^1.0.0
 ```
 
-## USAGE
+---
+
+## 🚀 Usage
 
 ```dart
 import 'package:boot_time_plugin/boot_time_plugin.dart';
+
 // Get boot time as DateTime (recommended)
 final DateTime bootTime = await BootTimePlugin.getBootTime();
 
-// Get boot time as raw milliseconds (for storage or performance)
-final int bootTimeMillis = await BootTimePlugin.getBootTimeMilliseconds();
+// Get boot time as milliseconds since epoch
+final int bootTimeMs = await BootTimePlugin.getBootTimeMs();
+
+// Get runtime (uptime) since last reboot as Duration
+final Duration runTime = await BootTimePlugin.getRunTime();
+
+// Get runtime (uptime) since last reboot in milliseconds
+final int runTimeMs = await BootTimePlugin.getRunTimeMs();
 ```
 
 ---
+
+## 📱 Platform Support
+
+| Feature         | Android | iOS |
+|-----------------|---------|-----|
+| Boot time       | ✅       | ✅   |
+| Runtime (uptime) | ✅       | ✅   |
+
+---
+
+## 💡 Notes
+
+- All time values are in **milliseconds** unless otherwise stated.
+- `getRunTime()` returns a `Duration`, while `getRunTimeMs()` returns raw `int` milliseconds.
+- `getBootTime()` calculates:
+    - On Android: `System.currentTimeMillis() - elapsedRealtime()`
+    - On iOS: `Date() - ProcessInfo.systemUptime`
+
+---
+
+## 📜 License
+
+MIT License. See [LICENSE](LICENSE) for details.
 
